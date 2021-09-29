@@ -1,6 +1,11 @@
-const io = require("socket.io")(8900, {
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+const port = process.env.PORT || 8900;
+const clientPort = process.env.CLIENT_PORT;
+const io = require("socket.io")(port, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: clientPort,
   },
 });
 
